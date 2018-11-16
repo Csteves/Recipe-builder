@@ -1,0 +1,43 @@
+header{
+    border-bottom: solid black 1px;
+    width: 100%;
+    height: 15vh;
+    background-color: brown;
+    text-align: center;
+    margin-top:-20px;
+}
+main{
+    text-align: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height:100vh;
+}
+section{
+    
+}
+
+nav{
+    position: relative;
+    display: flex;
+    height:10vh;
+    width: 100%;
+}
+nav > ul{
+    display:flex;
+    position: absolute;
+    right: 20px;
+}
+.nav-list > li{
+    margin-right: 10px;
+    list-style: none;
+}
+.recipe-container{
+   
+}
+.recipe-display{
+    width:80%;
+    border: solid black 1px;
+}
