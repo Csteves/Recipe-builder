@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css?family=Prompt");
+ header{
+    display: flex !important;
+    align-content: center !important ;
+    align-items: center !important ;
+    height: 20vh;
+    border-bottom: solid black 1px;
+    background-color:darkslategrey;
+    font-family:'Prompt', sans-serif;
+}
+nav{
+    background-color: burlywood;
+    height:25px;
+}
+nav ul {
+    background-color: burlywood;
+    display: flex;
+    flex-direction: row-reverse;
+    margin:0 10px 0 0;
+}
+nav ul li{
+    color: darkslategray;
+    list-style: none;
+    margin-right: 8px;
+    
+}
+nav ul li:hover{
+    border-bottom:solid darkslategray 2px;
+    transition: 0.3s;
+}
+.logo_container{
+    position: relative;
+    height: 128px;
+    width: 128px;
+    left: -12px;
+    top:20px;
+}
+header h1 {
+    color: burlywood;
+    border-radius: 25px;
+    font-size: 3em;
+    position: relative;
+    padding:3px;
+  
+    
+}
+header h6 {
+    color: burlywood;
+    font-size: 1.5em;
+    position: absolute;
+    right: 20px;
+    top:30px;
+    padding:3px;
+} 

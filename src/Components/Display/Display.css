@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css?family=Prompt");
+
+.main_display_container{
+ overflow: auto;
+ background-color: darkslategray;
+ margin-top: 15px;
+}
+.title{
+
+}
+#recipes_display{
+    width:80%;
+    margin: 0 auto;
+    
+}
+
+.list_ingredients{
+    font-size: 10px;
+}
+ul{
+    text-align:left;
+}
+
+#recipe_image{
+    max-width: 200px;
+    max-height: 240px;
+}
