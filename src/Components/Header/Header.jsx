@@ -3,6 +3,8 @@ import './Header.css';
 import RecipeIcon from './../../recipe.png';
 import Date from '../utils/dateCreator.js';
 
+
+
 class Header extends Component{
 
     render(){
@@ -11,7 +13,7 @@ class Header extends Component{
         <div>
             <header>
                 <div className="logo_container">
-                    <img src={RecipeIcon}/>
+                    <img src={RecipeIcon} alt=""/>
                 </div>
                 <h1>Recipe Builder</h1>
                 <h6><Date></Date></h6>

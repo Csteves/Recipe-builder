@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import './Display.css';
 import {PanelGroup,Panel,Button,ButtonToolbar,ListGroup,ListGroupItem,Image} from 'react-bootstrap';
+
 
 
 class Display extends Component{
@@ -16,8 +16,8 @@ class Display extends Component{
    
     render(){
 
-        console.log('display check:',this.state.recipes);
         let singleRecipe = this.props.recipes.map((recipe) =>{
+            let recipeTitle = `${recipe.title} \u00A0\u00A0\u00A0\u00A0 -${recipe.date}`
             return(
                 <Panel 
                 eventKey={recipe.id}
@@ -26,8 +26,10 @@ class Display extends Component{
                 >
                  <Panel.Heading>
                     <Panel.Title 
-                        className="title"
-                        toggle>{recipe.title}-{recipe.date}
+                    className="title"
+                    toggle
+                    >
+                    {recipeTitle}
                     </Panel.Title>
                 </Panel.Heading>
                 <Panel.Body 
@@ -44,7 +46,7 @@ class Display extends Component{
                     </ListGroup>
                 <ButtonToolbar>
                   <Button 
-                  onClick={()=>{this.props.handleEdit(recipe.id)}} bsStyle="warning"
+                  onClick={()=>{this.props.setEditRecipe(recipe.id)}} bsStyle="warning"
                   >
                   Edit
                   </Button>

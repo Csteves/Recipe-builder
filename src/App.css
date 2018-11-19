@@ -1,8 +1,39 @@
 .App {
   text-align: center;
   background-color: darkslategray;
+  height: auto;
+}
+.main_header_div{
+position: fixed ;
+top:0;
+padding-bottom: 10px;
+width: 100%;
+background-color: darkslategray;
+}
+.create_and_display_container{
+  position: relative;
+  width: 100%;
+  height: auto;
+  top:40vh;
+  background-color: darkslategray;
 }
 
+h5{
+  color:burlywood !important;
+  height: 5px;
+}
+.main_create_div{
+position: relative;
+top:0;
+flex:1;
+margin-bottom:5px;
+}
 
-
+.display{
+  position: relative;
+  border-top:5px solid burlywood;
+  background-color: darkslategray;
+  width:100%;
+  
+}
 
