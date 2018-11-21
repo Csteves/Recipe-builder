@@ -16,8 +16,21 @@ module.exports = {
         
         res.status(200).send(myRecipes)
     },
-    update:{
-
+    update:(req,res) =>{
+        const {title,ingredients,image,date} = req.body.obj;
+        console.log("body",req.body, "id", req.params.id)
+        let recipeIndex = myRecipes.findIndex(recipe => recipe.id === +req.params.id);
+        console.log('recipeIndex',recipeIndex)
+        let updatedRecipe = myRecipes[recipeIndex];
+        myRecipes[recipeIndex] = {
+            title:title,
+            ingredients:ingredients,
+            image:image,
+            date:date,
+            id:updatedRecipe.id
+        };
+        console.log("updated",myRecipes)
+        res.status(200).send(myRecipes);
     },
     delete:(req,res)=>{
         let recipeIndex = myRecipes.findIndex(recipe=> recipe.id === +req.params.id);

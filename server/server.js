@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.get('/api',controller.read);
 app.post('/api/',controller.create);
 app.delete('/api/:id',controller.delete)
-
+app.put('/api/:id',controller.update)
 
 
 app.listen(config.port,()=>{
