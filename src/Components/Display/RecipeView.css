@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Prompt");
+
+.container{
+border-top: 2px solid burlywood;
+width:100%;
+margin-top:10px;
+}
+.list_container{
+    width:100%;
+}
+.group{
+    width:100%;
+}
+.search_button{
+    margin-left:10px;
+}

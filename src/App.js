@@ -4,7 +4,8 @@ import axios from 'axios'
 import Header from './Components/Header/Header.jsx';
 import CreateRecipe from './Components/Create/CreateRecipe.jsx'
 import Display from './Components/Display/Display';
-import Edit from './Components/Edit/Edit.jsx'
+import Edit from './Components/Edit/Edit.jsx';
+import RecipeView from './Components/Display/RecipeView.jsx'
 
 class App extends Component {
   constructor(){
@@ -90,6 +91,9 @@ handleDelete(id){
            handleShow={this.handleShow}
            setEditRecipe={this.setEditRecipe}
          />
+       </div>
+       <div className="recipe_view">
+         <RecipeView/>
        </div>
        
       </div>

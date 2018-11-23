@@ -6,10 +6,8 @@ import Date from '../utils/dateCreator.js';
 
 
 class Header extends Component{
-
     render(){
-
-        return(
+     return(
         <div>
             <header>
                 <div className="logo_container">

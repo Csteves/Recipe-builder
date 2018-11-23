@@ -2,8 +2,9 @@
 section{
     background-color:darkslategray;
     display: flex !important ;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-evenly;
     position: relative;
  
 }
@@ -23,5 +24,21 @@ input {
 .flex_self_button{
     margin:5px 0 3px 10%;
     position: relative;
-    align-self: flex-start;
+    right:25px;
+}
+.dog_image_container{
+   
+}
+.dog_image{
+    height: 200px;
+    width: 200px;
+    border: solid black 2px;
+    margin-left: 40px;
+}
+.create_recipe_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

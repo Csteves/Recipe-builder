@@ -10,17 +10,10 @@ class Edit extends Component {
             image:'',
             flag:false,
       }
-      
-    
       this.saveUpdate = this.saveUpdate.bind(this);
       this.handleState = this.handleState.bind(this);
-      //this.handleFlag = this.handleFlag.bind(this);
     }
-    // handleFlag(){
-    //   this.setState({flag:!this.state.flag});
-    //   this.handleState();
-      
-    // }
+   
     handleState(){
       this.setState({
         title:this.props.editRecipe.title,
@@ -78,9 +71,8 @@ class Edit extends Component {
             value={this.state.title}
             placeholder={editRecipe.title} 
             />
-          
-         
-            <input
+           
+           <input
              type="text" 
              disabled={(this.state.flag)?"":"disabled"}  
              onChange={e => this.handleIngredients(e)} 
@@ -88,8 +80,7 @@ class Edit extends Component {
              placeholder={editRecipe.ingredients}  
               />
       
-          
-            <input 
+           <input 
              type="text" 
              disabled={(this.state.flag)?"":"disabled"} 
              onChange={e => this.handleImage(e)} 
@@ -97,12 +88,11 @@ class Edit extends Component {
              placeholder={editRecipe.image} 
               />
     
-       
-          </Modal.Body>
+        </Modal.Body>
           <Modal.Footer>
             <Button bsStyle='info' 
             onClick={this.handleState}
-            active={(this.state.flag)?"":"active"}
+            active={(this.state.flag)?false:true}
             >
             click to update
             </Button>

@@ -43,6 +43,10 @@ class CreateRecipe extends Component{
         return(
             <div className="CreateRecipe_container">
                 <section>
+                    <div className="dog_image_conatiner" >
+                        <div className="dog_image" ></div>
+                    </div>
+                    <div className="create_recipe_container" >
                     <h6>ADD A TITLE</h6>
                     <input
                     placeholder='Recipe title' 
@@ -70,6 +74,7 @@ class CreateRecipe extends Component{
                     >
                     Create Recipe
                     </Button>
+                    </div>
                 </section>
             
             </div>
