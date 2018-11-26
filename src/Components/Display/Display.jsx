@@ -1,18 +1,43 @@
 import React, {Component} from 'react';
 import './Display.css';
 import {PanelGroup,Panel,Button,ButtonToolbar,ListGroup,ListGroupItem,Image} from 'react-bootstrap';
-
+import DisplayGrocList from './DisplayGrocList.jsx'
+import axios from 'axios';
 
 
 class Display extends Component{
   constructor(){
       super();
       this.state = {
-          image:''
+          image:'',
+          savedIngredients:[],
       }
+      this.saveIngredient = this.saveIngredient.bind(this);
+      this.deleteItem = this.deleteItem.bind(this);
   }
+  componentDidMount(){
+    axios.get('/api/grocery').then(res =>{
+        this.setState({savedIngredients:res.data})
+        console.log('grocey component',this.state.savedIngredients)
+    })
+}
 
- 
+ saveIngredient(newItem){
+    
+     alert(`You saved ${newItem} to your grocery list`);
+     axios.post(`/api/grocery`,{newItem}).then(res =>{
+         console.log(res.data);
+         this.setState({savedIngredients:res.data});
+     })
+ }
+ deleteItem(index){
+    axios.delete(`/api/grocery/${index}`).then(res =>{
+        console.log(res.data);
+        this.setState({
+            savedIngredients:res.data
+        })
+    })
+ }
    
     render(){
 
@@ -37,7 +62,12 @@ class Display extends Component{
                     <h6>Ingredients</h6>
                     <ListGroup>
                         {recipe.ingredients.split(",").map((ingredient, index) => (
-                        <ListGroupItem className="list_ingredients" key={index}>{ingredient}
+                        <ListGroupItem 
+                        className="list_ingredients" 
+                        key={index}
+                        onClick={()=>this.saveIngredient(ingredient)}
+                        >
+                        {ingredient}
                         </ListGroupItem>
                         ))}
                         <ListGroupItem> 
@@ -68,6 +98,14 @@ class Display extends Component{
                 <PanelGroup accordion id="recipes_display">
                     {singleRecipe}           
                 </PanelGroup>
+                <div className="main_groc_container">
+                    <DisplayGrocList
+                    id="grocery_display"
+                    ingredients={this.state.savedIngredients}
+                    deleteItem={this.deleteItem}
+                    /> 
+                </div>
+                
             </div>
             
                

@@ -1,4 +1,5 @@
 const myRecipes = [];
+const myGroceries =[];
 let id = 0;
 
 module.exports = {
@@ -38,6 +39,20 @@ module.exports = {
         myRecipes.splice(recipeIndex,1);
         console.log("cehck delete",req.params.id)
         res.status(200).send(myRecipes);
+    },
+    readGroc: (req,res)=>{
+        console.log(myGroceries);
+        res.status(200).send(myGroceries);
+    },
+    createGroc:(req,res)=>{
+        console.log(req.body);
+        myGroceries.push(req.body.newItem);
+        res.status(200).send(myGroceries)
+    },
+    deleteGroc:(req,res) =>{
+        myGroceries.splice(req.params.index,1);
+        res.status(200).send(myGroceries);
+        console.log(myGroceries,"deleteGroc")
     }
 
 }

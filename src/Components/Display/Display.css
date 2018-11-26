@@ -5,10 +5,18 @@
  background-color: darkslategray;
  margin-top: 15px;
 }
-.title{
+.main_groc_container{
+    overflow: auto;
+    background-color: darkslategray;
+    margin-top: 15px;
+   }
 
-}
 #recipes_display{
+    width:80%;
+    margin: 0 auto;
+    
+}
+#grocery_display{
     width:80%;
     margin: 0 auto;
     
@@ -25,3 +33,4 @@ ul{
     max-width: 200px;
     max-height: 240px;
 }
+

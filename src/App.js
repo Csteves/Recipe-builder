@@ -8,6 +8,7 @@ import Edit from './Components/Edit/Edit.jsx';
 import RecipeView from './Components/Display/RecipeView.jsx'
 
 
+
 class App extends Component {
   constructor(){
     super();
@@ -35,7 +36,10 @@ class App extends Component {
         recipes:res.data
       })
     })
-    this.dogPicTimer = setInterval(()=>this.getDogPic(),10000);
+    axios.get(`/api/grocery`).then(res =>{
+      console.log(res.data)
+    })
+    this.dogPicTimer = setInterval(()=>this.getDogPic(),7000);
   }
   componentWillUnmount(){
     clearInterval(this.dogPicTimer);

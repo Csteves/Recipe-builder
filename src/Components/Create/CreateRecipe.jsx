@@ -12,6 +12,7 @@ class CreateRecipe extends Component{
             ingredients:'',
             image: '',
             recipe:{},
+            inputVerified:true,
             //State variables for dog breeds and buttons
             breed:'',
             dogBreedindex:1,
@@ -36,12 +37,14 @@ class CreateRecipe extends Component{
            this.props.retrieveRecipes(res.data);
            console.log(res.data)
         })
+        this.setState({inputVerified:true})
     }
 
     handleInput(event){
        if(event.name === "title")this.setState({title:event.value});
-       else if(event.name === "ingredients")this.setState({ingredients:event.value});
+       else if(event.name === "ingredients")this.setState({ingredients:event.value,inputVerified:false});
        else if(event.name === "image")this.setState({image:event.value});
+       
     }
     //=============================================================
     //Functions for handling dog input and buttons
@@ -53,7 +56,7 @@ class CreateRecipe extends Component{
        
     }
     sendBreed(event){
-        if(event.key == "Enter" ){
+        if(event.key === "Enter" ){
             this.props.getDogPic(this.state.breed)
             this.setState({rightDisable:!this.state.rightDisable})
         }
@@ -142,6 +145,7 @@ class CreateRecipe extends Component{
                     onChange={event => this.handleInput(event.target)}
                     />
                     <Button 
+                    disabled={this.state.inputVerified}
                     onClick={()=>this.CreateRecipe()}
                     className="flex_self_button"
                     bsStyle="success"
