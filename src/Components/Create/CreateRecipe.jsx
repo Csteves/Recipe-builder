@@ -5,13 +5,18 @@ import './CreateRecipe.css';
 import {Button} from 'react-bootstrap';
 
 class CreateRecipe extends Component{
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state = {
             title: '',
             ingredients:'',
             image: '',
-            recipe:{}
+            recipe:{},
+            //State variables for dog breeds and buttons
+            breed:'',
+            dogBreedindex:1,
+            leftDisable: props.breedButtonsStatus,
+            rightDisable:props.breedButtonsStatus
         }
     }
     CreateRecipe(){
@@ -25,10 +30,12 @@ class CreateRecipe extends Component{
            this.setState({
                title:'',
                ingredients:'',
-               image:''
+               image:'',
+               
            })
            this.props.retrieveRecipes(res.data);
            console.log(res.data)
+           console.log(this.state.leftDisable, this.state.rightDisable, "from inside create")
         })
     }
 
@@ -37,14 +44,82 @@ class CreateRecipe extends Component{
        else if(event.name === "ingredients")this.setState({ingredients:event.value});
        else if(event.name === "image")this.setState({image:event.value});
     }
+    //=============================================================
+    //Functions for handling dog input and buttons
+    //=============================================================
+    breedHandler(event){
+        this.setState({
+            breed:event.target.value
+        });
+       
+    }
+    sendBreed(event){
+        if(event.key == "Enter" ){
+            this.props.getDogPic(this.state.breed)
+            this.setState({rightDisable:!this.state.rightDisable})
+        }
+    }
+    handleIndexButtons(left,right){
+        let currentIndex = this.state.dogBreedindex;
+        //handle disables of buttons
+        if(currentIndex <= 1){
+            this.setState({leftDisable:true})
+            console.log(this.state.leftDisable,'from inside if current is true')
+        }else if(currentIndex >= 1 && currentIndex <= this.props.breedLength){
+            this.setState({leftDisable:false,rightDisable:false})
+        }
+        // handle index for each button click
+        if(left){
+            console.log('fired left')
+            currentIndex--;
+            console.log(currentIndex)
+            this.setState({dogBreedindex:currentIndex})
+            this.props.getIndex(currentIndex)
+        }else if(right){
+            console.log("fired rigth")
+            currentIndex++;
+            console.log(currentIndex)
+            this.setState({dogBreedindex:currentIndex})
+            this.props.getIndex(currentIndex)
+        }
+    }
 
     render(){
         
         return(
             <div className="CreateRecipe_container">
                 <section>
-                    <div className="dog_image_conatiner" >
-                        <div className="dog_image" ></div>
+                    <div className="dog_image_container" >
+                    <h6>DOG PICS FOR ENJOYMENT</h6>
+                        <div className="dog_image" >
+                        <img src={this.props.dogPic} alt=""/>
+                        <div className="dog_pic_toolbar">
+                            <Button
+                            bsStyle="success"
+                            bsSize="xsmall"
+                            disabled={this.state.leftDisable}
+                            onClick={()=>this.handleIndexButtons(true,null)}
+                            >
+                            &#8592;
+                            </Button>
+                            <input 
+                            type="text"
+                            placeholder="show by breed"
+                            onChange={(event)=> {this.breedHandler(event)}}
+                            onKeyPress={event => this.sendBreed(event)}
+                            />
+                            <Button
+                            bsStyle="success"
+                            bsSize="xsmall"
+                            disabled={this.state.rightDisable}
+                            onClick={()=>this.handleIndexButtons(null,true)}
+                            >
+                            &#8594;
+                            </Button>
+                        </div>
+                        
+                        </div>
+
                     </div>
                     <div className="create_recipe_container" >
                     <h6>ADD A TITLE</h6>

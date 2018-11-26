@@ -7,6 +7,7 @@ import Display from './Components/Display/Display';
 import Edit from './Components/Edit/Edit.jsx';
 import RecipeView from './Components/Display/RecipeView.jsx'
 
+
 class App extends Component {
   constructor(){
     super();
@@ -14,12 +15,19 @@ class App extends Component {
       recipes:[],
       show: false,
       recipeToEdit:{},
+      dogUrl:this.getDogPic(),
+      breedArray:[],
+      breedButtonsDisabled:true
     }
     this.addCreatedRecipe = this.addCreatedRecipe.bind(this)
     this.handleDelete = this.handleDelete.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.setEditRecipe = this.setEditRecipe.bind(this);
     this.handleUpdateFn = this.handleUpdateFn.bind(this);
+    this.getDogPic = this.getDogPic.bind(this);
+    this.showDogByBreed = this.showDogByBreed.bind(this);
+    this.changeDog = this.changeDog.bind(this);
+    
   }
   componentDidMount(){
     axios.get(`/api`).then(res =>{
@@ -27,27 +35,67 @@ class App extends Component {
         recipes:res.data
       })
     })
+    this.dogPicTimer = setInterval(()=>this.getDogPic(),10000);
   }
+  componentWillUnmount(){
+    clearInterval(this.dogPicTimer);
+  }
+  //=============================================================
+    //Functions for handling dog pictures and api
+  //=============================================================
+  getDogPic(breed,random='random'){
+    if(breed){
+      axios.get(`https://dog.ceo/api/breed/${breed}/images`).then(res =>{
+      this.setState({
+        dogUrl:res.data.message[0],
+        breedArray:res.data.message,
+        
+      })
+      this.showDogByBreed(res.data.message,0);
+      })
+    }else{
+      axios.get(`https://dog.ceo/api/breeds/image/${random}`).then(res =>{
+      this.setState({
+        dogUrl:res.data.message
+        })
+      })
+    }
+    
+  }
+ 
+  showDogByBreed(breedArr,index){
+    clearInterval(this.dogPicTimer)
+   this.setState({dogUrl:breedArr[index], breedButtonsDisabled:false})
+    
+  }
+  changeDog(index){
+    
+    this.showDogByBreed(this.state.breedArray,index)
+    //console.log(index,"index")
+  }
+//=============================================================
+    //Functions for handling CRUD for Recipes
+//=============================================================
+  
   addCreatedRecipe(recipes){
     this.setState({
       recipes:recipes
     })
   }
   
-handleShow(){
+  handleShow(){
   this.setState({show:!this.state.show})
  
-}
-handleUpdateFn(obj){
+  }
+  handleUpdateFn(obj){
   console.log(obj);
   const {id} = obj
   axios.put(`/api/${id}`,{obj}).then(res =>{
     this.setState({recipes:res.data, recipeToEdit:''});
   })
   this.handleShow();
-  //this.forceUpdate();
-}
-handleDelete(id){
+  }
+  handleDelete(id){
     axios.delete(`/api/${id}`).then(res=>{
       this.setState({recipes:res.data})
     })
@@ -71,7 +119,14 @@ handleDelete(id){
       <div className="App">
         <div className="create_and_display_container" >
           <div className="main_create_div" >
-            <CreateRecipe retrieveRecipes={this.addCreatedRecipe}/>
+            <CreateRecipe 
+            retrieveRecipes={this.addCreatedRecipe}
+            dogPic={this.state.dogUrl}
+            getDogPic={this.getDogPic}
+            breedLength={this.state.breedArray.length}
+            getIndex={this.changeDog}
+            breedButtonsStatus={this.state.breedButtonsDisabled}
+            />
           </div>
           
           <div>
@@ -91,11 +146,10 @@ handleDelete(id){
            handleShow={this.handleShow}
            setEditRecipe={this.setEditRecipe}
          />
-       </div>
-       <div className="recipe_view">
-         <RecipeView/>
-       </div>
-       
+        </div>
+        <div className="recipe_view">
+          <RecipeView/>
+        </div>
       </div>
         
        <div className="main_header_div" >

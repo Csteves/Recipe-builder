@@ -69,7 +69,7 @@ class Edit extends Component {
             disabled={(this.state.flag)?"":"disabled"}  
             onChange={e => this.handleTitle(e)} 
             value={this.state.title}
-            placeholder={editRecipe.title} 
+            placeholder='Title' 
             />
            
            <input
@@ -77,7 +77,7 @@ class Edit extends Component {
              disabled={(this.state.flag)?"":"disabled"}  
              onChange={e => this.handleIngredients(e)} 
              value={this.state.ingredients}
-             placeholder={editRecipe.ingredients}  
+             placeholder='Ingredients'  
               />
       
            <input 
@@ -85,7 +85,7 @@ class Edit extends Component {
              disabled={(this.state.flag)?"":"disabled"} 
              onChange={e => this.handleImage(e)} 
              value={this.state.image} 
-             placeholder={editRecipe.image} 
+             placeholder='Image URL' 
               />
     
         </Modal.Body>
