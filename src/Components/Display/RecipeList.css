@@ -33,4 +33,10 @@
 }
 .source_button{
     margin:3px;
+    font-size: 5px;
+}
+.recipe_button_toolbar{
+    display: flex;
+    position: relative;
+    right:8px;
 }

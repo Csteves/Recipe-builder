@@ -25,8 +25,32 @@ export default class RecipeList extends Component{
                 </ul>
             </div>
             <div className="img_container">
-            <img src={recipe.recipe.image} className="single_recipe_image" alt="recipe" />
-            <a href={recipe.recipe.url}><Button bsStyle="success" className="source_button">View Source</Button></a>
+                    <img 
+                    src={recipe.recipe.image}
+                    className="single_recipe_image"
+                    alt="recipe" 
+                    />
+                <div className="recipe_button_toolbar">
+                    <Button 
+                    bsStyle="success" 
+                    bsSize="xsmall"
+                    className="source_button"
+                    onClick={()=> this.props.saveRecipe(recipe.recipe.label,recipe.recipe.ingredientLines,recipe.recipe.image)}
+                    >
+                    Add Recipe
+                    </Button>
+                    <a 
+                    href={recipe.recipe.url}
+                    >
+                        <Button 
+                        bsStyle="success" 
+                        bsSize="xsmall"
+                        className="source_button"
+                        >
+                        View Source
+                        </Button>
+                    </a>
+                </div>
             </div>
         </div>
         )

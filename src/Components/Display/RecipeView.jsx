@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import RecipeList from './RecipeList.jsx'
+import DateStamp from '../utils/dateCreator'
 import "./RecipeView.css"
 import {Button} from 'react-bootstrap'
 
@@ -16,6 +17,7 @@ class RecipeView extends Component{
             apiKey: '2b1449cdc9400582c7f81b2d65ebee36'
         }
         this.findRecipe = this.findRecipe.bind(this);
+        this.saveRecipe = this.saveRecipe.bind(this);
     }
 
 handleInput(val){
@@ -29,6 +31,19 @@ findRecipe(){
         this.setState({ recipes: firstTen });
 });
 }
+saveRecipe(title,ingredientLines,image){
+const newRecipe = {
+    title:title,
+    ingredients:[...ingredientLines].join(","),
+    image:image,
+    date:DateStamp()
+}
+axios.post(`/api`,{newRecipe}).then(res =>{
+    console.log(res.data)
+    this.props.updatedRecipe(res.data);
+})
+
+}
     render(){
         return(
             <div className="container">
@@ -41,6 +56,7 @@ findRecipe(){
                 <div className="list_container" >
                     <RecipeList 
                     recipeArr={this.state.recipes}
+                    saveRecipe={this.saveRecipe}
                     />
                 </div>
             </div>

@@ -46,7 +46,7 @@ input {
 }
 .dog_image_container h6 {
     position: relative;
-    left: 28px;
+    left: 29px;
 }
 .dog_image img{
     max-width: 100%;
@@ -57,7 +57,7 @@ input {
     border: solid burlywood 1px;
     border-radius: 25px;
     position: relative;
-    left: 9px;
+    left: 7px;
 }
 .dog_pic_toolbar{
     display: flex;

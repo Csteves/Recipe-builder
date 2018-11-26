@@ -35,7 +35,6 @@ class CreateRecipe extends Component{
            })
            this.props.retrieveRecipes(res.data);
            console.log(res.data)
-           console.log(this.state.leftDisable, this.state.rightDisable, "from inside create")
         })
     }
 

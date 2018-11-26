@@ -82,7 +82,7 @@ class App extends Component {
       recipes:recipes
     })
   }
-  
+ 
   handleShow(){
   this.setState({show:!this.state.show})
  
@@ -148,7 +148,9 @@ class App extends Component {
          />
         </div>
         <div className="recipe_view">
-          <RecipeView/>
+          <RecipeView
+          updatedRecipe={this.addCreatedRecipe}
+          />
         </div>
       </div>
         
