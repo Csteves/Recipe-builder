@@ -38,11 +38,13 @@ class DisplayGrocList extends Component{
                 <Panel.Body 
                 collapsible>
                     <h6>Items</h6>
+                    <em>* click item to delete</em>
                     <ListGroup>
                     {singleItem}
                     </ListGroup>
                 <ButtonToolbar>
                   <Button 
+                  onClick={this.props.handleShow}
                   >
                   Edit
                   </Button>

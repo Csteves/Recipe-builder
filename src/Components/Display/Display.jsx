@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './Display.css';
 import {PanelGroup,Panel,Button,ButtonToolbar,ListGroup,ListGroupItem,Image} from 'react-bootstrap';
 import DisplayGrocList from './DisplayGrocList.jsx'
+import EditGrocery from '../Edit/EditGrocery.jsx'
 import axios from 'axios';
 
 
@@ -11,9 +12,13 @@ class Display extends Component{
       this.state = {
           image:'',
           savedIngredients:[],
+          isEditting:false
       }
       this.saveIngredient = this.saveIngredient.bind(this);
       this.deleteItem = this.deleteItem.bind(this);
+      this.saveUpdate = this.saveUpdate.bind(this);
+      this.handleClose = this.handleClose.bind(this);
+      this.handleShow = this.handleShow.bind(this);
   }
   componentDidMount(){
     axios.get('/api/grocery').then(res =>{
@@ -37,6 +42,17 @@ class Display extends Component{
             savedIngredients:res.data
         })
     })
+ }
+ handleClose(){
+     this.setState({isEditting:false})
+ }
+ handleShow(){
+     this.setState({
+         isEditting:true
+     })
+ }
+ saveUpdate(){
+
  }
    
     render(){
@@ -103,7 +119,16 @@ class Display extends Component{
                     id="grocery_display"
                     ingredients={this.state.savedIngredients}
                     deleteItem={this.deleteItem}
+                    handleShow={this.handleShow}
                     /> 
+                </div>
+                <div>
+                    <EditGrocery
+                    items={this.state.savedIngredients}
+                    saveUpdate={this.saveUpdate}
+                    isEditting={this.state.isEditting}
+                    handleClose={this.handleClose}
+                    />
                 </div>
                 
             </div>
